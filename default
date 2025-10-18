@@ -1,31 +1,33 @@
-erver {
+server {
     #proxy_cache cache;
-        #proxy_cache_valid 200 1s;
+    #proxy_cache_valid 200 1s;
+    # Azure ascolta sulla porta 8080 internamente
+    # cp /home/site/wwwroot/default /etc/nginx/sites-available/default && service nginx reload
     listen 8080;
     listen [::]:8080;
+
+    # Imposta la radice del sito sulla cartella public di Laravel
     root /home/site/wwwroot/public;
     index  index.php index.html index.htm;
-    server_name  azure.hassisto.com;
+    charset utf-8;
+    server_name  azzure.hassisto.com;
     port_in_redirect off;
-
     location / {
         index  index.php index.html index.htm hostingstart.html;
     }
-
     # redirect server error pages to the static page /50x.html
     #
+
     error_page   500 502 503 504  /50x.html;
     location = /50x.html {
         root   /html/;
     }
-
     # Disable .git directory
     location ~ /\.git {
         deny all;
         access_log off;
         log_not_found off;
     }
-
     # Add locations of phpmyadmin here.
     location ~* [^/]\.php(/|$) {
         fastcgi_split_path_info ^(.+?\.[Pp][Hh][Pp])(|/.*)$;
@@ -43,5 +45,18 @@ erver {
         fastcgi_buffers 4 256k;
         fastcgi_busy_buffers_size 256k;
         fastcgi_temp_file_write_size 256k;
+    # Direttiva fondamentale per il routing di Laravel
+    location / {
+        try_files $uri $uri/ /index.php?$query_string;
+    }
+
+    # Passa gli script PHP a PHP-FPM
+    location ~ \.php$ {
+        fastcgi_split_path_info ^(.+\.php)(/.+)$;
+        # Il socket di PHP-FPM è gestito automaticamente da Azure
+        fastcgi_pass unix:/var/run/php/php8.2-fpm.sock; # <-- VERIFICA che la versione di PHP sia corretta!
+        fastcgi_index index.php;
+        include fastcgi_params;
+        fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
     }
 }
