@@ -1,25 +1,115 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# SSO Authentication System
 
 <p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
+<img src="https://laravel.com/img/logomark.min.svg" width="100" alt="Laravel">
 </p>
 
-## About Laravel
+## About This Project
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+A secure Single Sign-On (SSO) authentication system built with Laravel. This application provides user authentication with multiple providers including email/password, Microsoft OAuth, and Azure AD integration.
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## Features
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+- User authentication (login/register)
+- Profile management
+- Password reset functionality
+- Microsoft OAuth integration
+- Azure Active Directory integration
+- Responsive design
+- Secure session management
+
+## Requirements
+
+- PHP 8.1 or higher
+- Composer
+- Node.js & NPM
+- MySQL 5.7+ or equivalent database
+
+## Installation
+
+1. Clone the repository:
+   ```bash
+   git clone [your-repository-url]
+   cd sso
+   ```
+
+2. Install PHP dependencies:
+   ```bash
+   composer install
+   ```
+
+3. Install NPM dependencies:
+   ```bash
+   npm install
+   ```
+
+4. Create a copy of the .env file:
+   ```bash
+   cp .env.example .env
+   ```
+
+5. Generate application key:
+   ```bash
+   php artisan key:generate
+   ```
+
+6. Configure your database in the `.env` file
+
+7. Run migrations:
+   ```bash
+   php artisan migrate
+   ```
+
+8. Build assets:
+   ```bash
+   npm run build
+   ```
+
+9. Start the development server:
+   ```bash
+   php artisan serve
+   ```
+
+## Configuration
+
+### Environment Variables
+
+Set up the following environment variables in your `.env` file:
+
+```
+AZURE_CLIENT_ID=your_azure_client_id
+AZURE_CLIENT_SECRET=your_azure_client_secret
+AZURE_TENANT_ID=your_azure_tenant_id
+AZURE_REDIRECT_URI=${APP_URL}/auth/azure/callback
+
+MICROSOFT_CLIENT_ID=your_microsoft_client_id
+MICROSOFT_CLIENT_SECRET=your_microsoft_client_secret
+MICROSOFT_TENANT_ID=your_microsoft_tenant_id
+MICROSOFT_REDIRECT_URI=${APP_URL}/auth/microsoft/callback
+```
+
+## Usage
+
+1. Register a new account or use existing credentials to log in
+2. Access your profile to update personal information
+3. Change your password in the profile settings
+4. Use Microsoft or Azure AD login if configured
+
+## Contributing
+
+1. Fork the repository
+2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
+
+## Security Vulnerabilities
+
+Please review [our security policy](../../security/policy) on how to report security vulnerabilities.
+
+## License
+
+This project is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
 
 ## Learning Laravel
 
