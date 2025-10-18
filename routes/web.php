@@ -3,6 +3,7 @@
 use App\Http\Controllers\Auth\AzureAuthController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\MicrosoftAuthController;
+use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 
@@ -32,16 +33,16 @@ Route::middleware(['auth'])->group(function () {
 
     // Profile Routes
     Route::prefix('profile')->name('profile.')->group(function () {
-        Route::get('/', [\App\Http\Controllers\ProfileController::class, 'show'])->name('show');
-        Route::get('/edit', [\App\Http\Controllers\ProfileController::class, 'edit'])->name('edit');
-        Route::put('/', [\App\Http\Controllers\ProfileController::class, 'update'])->name('update');
+        Route::get('/', [ProfileController::class, 'show'])->name('show');
+        Route::get('/edit', [ProfileController::class, 'edit'])->name('edit');
+        Route::put('/', [ProfileController::class, 'update'])->name('update');
         
         // Password Routes
-        Route::get('/password', [\App\Http\Controllers\ProfileController::class, 'editPassword'])->name('password.edit');
-        Route::put('/password', [\App\Http\Controllers\ProfileController::class, 'updatePassword'])->name('password.update');
+        Route::get('/password', [ProfileController::class, 'editPassword'])->name('password.edit');
+        Route::put('/password', [ProfileController::class, 'updatePassword'])->name('password.update');
     });
     
     // Alias for password update to match the view's form action
-    Route::put('/password', [\App\Http\Controllers\ProfileController::class, 'updatePassword'])
+    Route::put('/password', [ProfileController::class, 'updatePassword'])
         ->name('password.update');
 });
