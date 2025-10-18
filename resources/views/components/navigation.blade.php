@@ -46,8 +46,6 @@
 
                         <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                             <a class="dropdown-item" href="{{ route('profile.show') }}">
-                                 onclick="event.preventDefault();
-                                             document.getElementById('profile-form').submit();">
                                 <i class="fas fa-user me-2"></i>{{ __('Profile') }}
                             </a>
                             <a class="nav-link" href="{{ route('profile.show') }}">
