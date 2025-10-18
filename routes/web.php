@@ -25,6 +25,42 @@ Route::get('/auth/azure/callback', [AzureAuthController::class, 'handleAzureCall
 Route::get('/auth/microsoft', [MicrosoftAuthController::class, 'redirectToMicrosoft'])->name('login.microsoft');
 Route::get('/auth/microsoft/callback', [MicrosoftAuthController::class, 'handleMicrosoftCallback']);
 
+// Test route for Microsoft OAuth
+Route::get('/test/microsoft', function () {
+    try {
+        $provider = \Laravel\Socialite\Facades\Socialite::driver('microsoft');
+        
+        // Debug: Check if the provider is properly initialized
+        if (!($provider instanceof \Laravel\Socialite\Two\AbstractProvider)) {
+            throw new \Exception('Provider is not an instance of AbstractProvider');
+        }
+        
+        return response()->json([
+            'status' => 'success',
+            'provider' => get_class($provider),
+            'config' => [
+                'client_id' => config('services.microsoft.client_id'),
+                'redirect' => config('services.microsoft.redirect'),
+                'tenant' => config('services.microsoft.tenant', 'common'),
+                'config_path' => config_path('services.php'),
+                'env' => [
+                    'client_id' => env('MICROSOFT_CLIENT_ID'),
+                    'redirect' => env('MICROSOFT_REDIRECT_URI'),
+                    'tenant' => env('MICROSOFT_TENANT_ID')
+                ]
+            ]
+        ]);
+    } catch (\Exception $e) {
+        return response()->json([
+            'status' => 'error',
+            'message' => $e->getMessage(),
+            'trace' => $e->getTraceAsString(),
+            'providers' => array_keys(config('app.providers')),
+            'services_config' => config('services.microsoft')
+        ], 500);
+    }
+});
+
 // Protected Routes
 Route::middleware(['auth'])->group(function () {
     Route::get('/dashboard', function () {
