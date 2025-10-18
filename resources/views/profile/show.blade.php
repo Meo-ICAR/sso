@@ -49,7 +49,7 @@
                         <p class="text-muted">
                             {{ __('Ensure your account is using a long, random password to stay secure.') }}
                         </p>
-                        <a href="{{ route('password.edit') }}" class="btn btn-outline-secondary">
+                        <a href="{{ route('profile.password.edit') }}" class="btn btn-outline-secondary">
                             {{ __('Update Password') }}
                         </a>
                     </div>
