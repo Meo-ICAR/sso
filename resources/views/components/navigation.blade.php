@@ -38,10 +38,7 @@
                     @endif
                 @else
                     <li class="nav-item me-3">
-                        <a class="nav-link" href="{{ route('profile.show') }}">
-                            <i class="fas fa-user me-1"></i> {{ __('Profile') }}
-                        </a>
-                    </li>
+
                     <li class="nav-item dropdown">
                         <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                             {{ Auth::user()->name }}
@@ -50,9 +47,12 @@
                         <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                             <a class="dropdown-item" href="{{ route('profile.show') }}">
                                  onclick="event.preventDefault();
-                                             document.getElementById('logout-form').submit();">
+                                             document.getElementById('profile-form').submit();">
                                 <i class="fas fa-user me-2"></i>{{ __('Profile') }}
                             </a>
+                            <a class="nav-link" href="{{ route('profile.show') }}">
+                            <i class="fas fa-user me-1"></i> {{ __('Test') }}
+                        </a>
                             <a class="dropdown-item" href="{{ route('logout') }}"
                                onclick="event.preventDefault();
                                              document.getElementById('logout-form').submit();">
