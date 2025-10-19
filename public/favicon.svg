@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <!-- Background circle -->
+    <circle cx="32" cy="32" r="30" fill="#4F46E5"/>
+    
+    <!-- Shield/Checkmark design -->
+    <path d="M32 8C24.27 8 17.1 10.24 17.1 10.24L16 10.5V32C16 42.8 23.22 51.6 32 54C40.78 51.6 48 42.8 48 32V10.5L46.9 10.24C46.9 10.24 39.73 8 32 8Z" fill="white" fill-opacity="0.1"/>
+    <path d="M32 4C24.27 4 17.1 6.24 17.1 6.24L16 6.5V28C16 38.8 23.22 47.6 32 50C40.78 47.6 48 38.8 48 28V6.5L46.9 6.24C46.9 6.24 39.73 4 32 4Z" fill="white"/>
+    <path d="M28 36.34L40 24.34L36.66 21L28 29.66L23.34 25L20 28.34L28 36.34Z" fill="#4F46E5"/>
+</svg>
