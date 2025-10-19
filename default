@@ -54,7 +54,7 @@ server {
     location ~ \.php$ {
         fastcgi_split_path_info ^(.+\.php)(/.+)$;
         # Il socket di PHP-FPM è gestito automaticamente da Azure
-        fastcgi_pass unix:/var/run/php/php8.2-fpm.sock; # <-- VERIFICA che la versione di PHP sia corretta!
+        fastcgi_pass unix:/var/run/php/php8.4-fpm.sock; # <-- VERIFICA che la versione di PHP sia corretta!
         fastcgi_index index.php;
         include fastcgi_params;
         fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
